@@ -1,0 +1,75 @@
+/** Using 'universal selector' for initial setting **/
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+.heading__primary {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #4062AB;
+}
+
+.mb-xlg {
+  margin-bottom: 3.2rem;
+}
+
+.mb-lg {
+  margin-bottom: 2rem;
+}
+
+.mb-sm {
+  margin-bottom: 1.5rem;
+}
+
+.description__para {
+  color: rgba(0, 34, 43, 0.6);
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.description__ready {
+  color: rgba(0, 34, 43, 0.6);
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.description__link {
+  background-color: #C23364;
+  border-radius: 10rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.8rem;
+  padding: 1.2rem 3rem;
+  text-decoration: none;
+}
+
+.welcome {
+  min-height: 100vh;
+  background-color: #E7418F;
+  padding: 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+.welcome__secondary {
+  background-color: #FFFFFF;
+  border-radius: 2rem;
+  box-shadow: 0 1rem 1.3rem rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  max-width: 100rem;
+  width: 100%;
+  text-align: center;
+}
+
+/*# sourceMappingURL=styles.css.map */
