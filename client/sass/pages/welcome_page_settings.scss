@@ -1,14 +1,24 @@
 @use '../abstracts/variable' as *;
+@use '../abstracts/mixins.scss' as *;
 
 .welcome {
     min-height: 100vh;
     background-color: $main-bg-color;
-    padding: 2.5rem 0;
+    padding: 2.5rem 7rem;
+
+    /** When the screen is Tablet landscape **/
+    @include mediaQuery(tab-land) {
+        padding: 1.5rem 2rem;
+    }
+
+    @include mediaQuery(tab-port) {
+        padding: 1.5rem 2rem;
+    }
    
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
 
 
     &__secondary {
