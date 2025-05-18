@@ -20,8 +20,8 @@ class AuthController {
       console.log(password);
       const salt = await bcrypt.genSalt(10);
       let hashedPassword = await bcrypt.hash(password, salt);
-      let b = lastName.split("");
-      let username = firstName + "." + b[0];
+      let username = `${firstName}.${lastName?.[0] || ""}`.toLowerCase();
+
       let user = new User({
         firstName,
         lastName,
@@ -59,37 +59,37 @@ class AuthController {
     try {
       const { username, password } = result.value;
       let user = await User.findOne({ username });
-      
+
       if (!user) {
+        return res.status(400).json({ msg: "Invalid Credentials" });
+      }
+
+      if (user.tempPassword === user.password) {
+        const isTempMatch = await bcrypt.compare(password, user.tempPassword);
+        if (isTempMatch) {
+          console.log("first");
+          const payload = {
+            user: {
+              id: user.id,
+              name: user.username,
+            },
+          };
+          const token = jwt.sign(payload, process.env.JWT_SECRET, {
+            expiresIn: 3600000,
+          });
+
+          let resp = {
+            code: 419,
+            status: "success",
+            message: "Logged in! Now change your password!!!",
+            token,
+          };
+          res.cookie("userToken", token, { maxAge: 1000 * 60 * 60 });
+          console.log(resp);
+          return res.status(resp.code).json(resp.message);
+        } else {
           return res.status(400).json({ msg: "Invalid Credentials" });
         }
-        
-        if (user.tempPassword === user.password) {
-            const isTempMatch = await bcrypt.compare(password, user.tempPassword);
-            if (isTempMatch) {
-                console.log("first")
-                const payload = {
-                    user: {
-                    id: user.id,
-                    name: user.username,
-                    },
-                };
-                const token = jwt.sign(payload, process.env.JWT_SECRET, {
-                    expiresIn: 3600000,
-                });
-
-                let resp = {
-                    code: 419,
-                    status: "success",
-                    message: "Logged in! Now change your password!!!",
-                    token,
-                };
-                res.cookie("userToken", token, { maxAge: 1000 * 60 * 60 });
-                console.log(resp)
-                return res.status(resp.code).json(resp.message);
-            } else {
-            return res.status(400).json({ msg: "Invalid Credentials" });
-            }
       } else {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {

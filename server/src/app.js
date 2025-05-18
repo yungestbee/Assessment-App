@@ -4,6 +4,7 @@ const cors = require("cors"); // For handling cross-origin requests
 require("dotenv").config(); // To manage environment variables
 const connectDB = require("./database/db");
 const authRoutes = require('./server/routes/auth.routes')
+const studentRoutes = require("./server/routes/student.routes");
 const cookieParser = require('cookie-parser');
 
 
@@ -20,7 +21,7 @@ app.use(cookieParser());
 connectDB()
 // Routes
 // app.use("/api/v1/results", resultRoutes);
-// app.use("/api/v1/student", studentRoutes);
+app.use("/api/v1/students", studentRoutes);
 app.use("/api/v1", authRoutes);
 
 

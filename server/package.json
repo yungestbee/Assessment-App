@@ -20,8 +20,10 @@
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.3",
+    "multer": "^1.4.5-lts.2",
     "nodemailer": "^6.9.16",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "xlsx": "^0.18.5"
   },
   "author": "Lawal Idris",
   "license": "ISC",
