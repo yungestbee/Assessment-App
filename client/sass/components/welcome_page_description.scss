@@ -1,0 +1,29 @@
+@use '../abstracts/variable' as *;
+
+.description {
+   
+    &__para {
+        color: $veryDarkCyanFade;
+        font-size: 1.8rem;
+        font-weight: 500;
+        line-height: 1.2;
+    }
+
+    &__ready {
+        color: $veryDarkCyanFade;
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+
+    &__link {
+        background-color: $main-btn-color;
+        border-radius: 10rem;
+        color: $secondary-color;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 1.8rem;
+        padding: 1.2rem 3rem;
+        text-decoration: none;
+
+    }
+}
