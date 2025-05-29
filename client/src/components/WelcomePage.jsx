@@ -18,26 +18,6 @@ export const WelcomePage = () => {
           <Link to="/student-bio-data" className = "description__link">Proceed With Assessment</Link>
         </section>
 
-        <section className = "benefits mb-lg">
-          <h2 className = "benefits__heading">Key Features And Benefits</h2>
-          <ul className = "benefits__ul">
-                <li className = "benefits__li">Personalized Assessment: Tailor assessments to individual student needs and learning styles.</li>
-                {/* <li className = "benefits__li">Actionable Data: Gain deep insights into student performance with detailed reports and analytics.</li> */}
-                <li className = "benefits__li">Progress Tracking: Monitor student growth over time and measure the effectiveness of interventions.</li>
-                {/* <li className = "benefits__li">Seamless Integration: Easily integrate with your existing learning management systems (LMS).</li> */}
-                <li className = "benefits__li">Time-Saving Tools: Streamline the assessment process with automated scoring and feedback.</li>
-            </ul>
-        </section>
-
-        <section className = "commitment mb-lg">
-          <h2 className = "commitment__heading">Our Commitment</h2>
-            <p className ="commitment__para mb-sm">
-              We are dedicated to providing educators with the tools they need to support student success.  Our assessment solutions are designed to be reliable, valid, and easy to use.
-            </p>
-            <p className = "commitment__join">
-              Join us in empowering the next generation of learners.
-            </p>
-        </section>
       </div>
     </div>
   )
