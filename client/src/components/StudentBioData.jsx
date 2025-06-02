@@ -20,7 +20,6 @@ const FirstName = ( ) => {
     }
     localStorage.setItem('std_firstname', JSON.stringify({firstname: inpfirstname}));
     navigateToLastName('lastname');
-
   }
 
   return (
