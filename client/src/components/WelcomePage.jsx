@@ -31,7 +31,6 @@ export const WelcomePage = () => {
             </p>
             <Link to="/student-bio-data" className = "description__link">Proceed With Assessment</Link>
           </section>
-
         </div>
       </div>
     </>

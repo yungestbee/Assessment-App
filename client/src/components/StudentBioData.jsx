@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Link, Routes, Route, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 
-// Creating  a independent 'Functional Component' called => FirstName
+// Creating a independent 'Functional Component' called => FirstName
 const FirstName = ( ) => {
   const [inpfirstname, setInpFirstName] = useState('');
   const navigateToLastName = useNavigate();
   
-
   const handleChangeFirstName = (evt) => {
     setInpFirstName(evt.target.value);
   }
@@ -26,7 +25,7 @@ const FirstName = ( ) => {
     <div className = "first-container">
       <form className = "form" onSubmit = { handleSubmitFirstName }>
         <div className = "form__group mb-sm">
-          <span className = "form__text">Your FirstName:</span>
+          <label className = "form__text">Your FirstName</label>
           <input className = "form__input" type="text" name = "first" value = { inpfirstname } onChange = { handleChangeFirstName } required />
         </div>
           <input className = "form__btn" type="submit" value = "Submit" />
@@ -60,7 +59,7 @@ const LastName = ( ) => {
     <div>
       <form className = "form" onSubmit={ handleSubmitLastName }>
           <div className = "form__group mb-sm">
-            <span className = "form__text">Your LastName:</span>
+            <label className = "form__text">Your LastName</label>
             <input className = "form__input" type="text" name = "last" value = { inplastname } onChange = { handleChangeLastName } required />
           </div>
             <input className = "form__btn" type="submit" value = "Submit" />
@@ -89,44 +88,52 @@ const Grade = ( ) => {
       processedLastName = JSON.parse(localStorage.getItem('std_lastname'));
     }
 
+    const URL = "http://localhost:6000/api/v1/students";
+
     try {
       if (!selectedGrade) {
         alert('Your Grade Is Required');
         return;
       }
 
-      const URL = "http://localhost:6000/api/v1/students";
-
-      const response = await axios.post(
-      URL,
-      {
-        firstName: processedFirstName.firstname,
-        lastName: processedLastName.lastname,
-        grade: selectedGrade
-      },
-      {
+      const response = await fetch(URL, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        withCredentials: true
+        credentials: "include", // equivalent to axios's withCredentials: true
+        body: JSON.stringify({
+          firstName: processedFirstName.firstname,
+          lastName: processedLastName.lastname,
+          grade: selectedGrade
+        })
       });
 
-      if (response.status === 200) {
-       
+      if (response.ok) {
+        /*const data = await response.json(); // if you expect a JSON response
+        console.log(
+          'FirstName:', processedFirstName.firstname,
+          'LastName:', processedLastName.lastname,
+          'Grade:', selectedGrade
+        );*/
+        alert("Student data successfully submitted!");
+      } 
+      else {
+        //console.log('Submission failed with status:', response.status);
+        alert("Something went wrong. Please try again.");
       }
-
     } 
     catch (err) {
-      console.log(err);
-      setStatus(err);
+      console.error('Submission error:', err);
+      setStatus("Network or server error occurred.");
     }
-  } 
+  };
 
   return (
     <div>
     <form className = "form" onSubmit = { handleSubmitGrade }>
       <div className = "form__group mb-sm">
-        <span className = "form__text">Your Grade:</span>
+        <label className = "form__text">Your Grade</label>
         <select className = "form__input" name = "grade" value = {selectedGrade} onChange = {handleChangeGrade}>
           <option value="Grade 1">Grade 1</option>
           <option value="Grade 2">Grade 2</option>
